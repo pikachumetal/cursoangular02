@@ -1,9 +1,68 @@
-angular.module('appPhone',[]).controller('PhoneListController', function PhoneListController($scope, PhoneService) {
-    PhoneService.getPhones().then(function (data) {
-        $scope.phones =data;
-    });
-    $scope.query = "";
-    $scope.queryselector = "1";
-    $scope.direccion = true;
-    $scope.seeimage = "app/shop/phonelist/templates/phonelist.image.template.html";
+angular.module('appPhone').controller('PhoneListController', function PhoneListController($scope, PhoneService, PhoneLocalStorage) {
+    "use strict";
+
+    var reloadJSON = function reloadJSON() {
+        PhoneService.getPhones().then(function (data) {
+            $scope.phones = data;
+            PhoneLocalStorage.setPhones(data);
+        });
+    }
+
+    var loadQuerySelector = function loadQuerySelector() {
+        PhoneService.getQuerySelector().then(function (data) {
+            $scope.queryselectorLabels = data;
+        });
+    }
+
+    var loadSeeImage = function loadSeeImage() {
+        PhoneService.getSeeImage().then(function (data) {
+            $scope.seeimageLabels = data;
+        });
+    }
+
+    var loadPhones = function loadPhones() {
+        return PhoneLocalStorage.getPhones();
+    }
+
+    var initController = function initController() {
+        $scope.phones = loadPhones();
+        $scope.query = "";
+        $scope.queryselector = "1";
+        loadQuerySelector();
+        //$scope.queryselectorLabels = { "1": "Name", "2": "Description" };
+        $scope.direccion = true;
+        loadSeeImage();
+        //$scope.seeimageLabels = { "app/shop/phonelist/templates/phonelist.list.image.template.html": "Images", "app/shop/phonelist/templates/phonelist.list.noimage.template.html": "No Images" };
+        $scope.seeimage = "app/shop/phonelist/templates/phonelist.list.image.template.html";
+        $scope.reloadJSON = reloadJSON;
+    }
+
+    initController();
+});
+
+angular.module('appPhone').controller('PhoneEditController', function PhoneListController($scope, PhoneLocalStorage, $routeParams) {
+    "use strict";
+
+    var saveForm = function saveForm() {
+        PhoneLocalStorage.setPhone(parseInt($routeParams.id), $scope.phone);
+    };
+
+    var resetForm = function resetForm() {
+        $scope.phone = angular.copy($scope.master);
+    };
+
+    var initController = function initController() {
+        var phone = PhoneLocalStorage.getPhone(parseInt($routeParams.id));
+        $scope.phone = phone;
+        $scope.master = angular.copy(phone);
+        $scope.resetForm = resetForm;
+        $scope.saveForm = saveForm;
+    }
+
+    initController();
+});
+
+angular.module('appPhone').controller('PhoneItemController', function PhoneListController($scope, PhoneLocalStorage, $routeParams) {
+    var phone = PhoneLocalStorage.getPhone(parseInt($routeParams.id));
+    $scope.phone = phone;
 });
