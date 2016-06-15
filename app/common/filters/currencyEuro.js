@@ -1,4 +1,4 @@
-phonecatApp.filter('euro', function() {
+angular.module('appPhone').filter('euro', function() {
     return function(x,numberDecimals) {
         var txt = "";
         var decs = parseInt(numberDecimals) || 2;

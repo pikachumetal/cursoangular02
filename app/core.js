@@ -1,1 +1,0 @@
-var __app = angular.module('app', []);

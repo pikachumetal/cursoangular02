@@ -1,3 +1,3 @@
-phonecatApp.controller('PhoneListController', function PhoneListController($scope, PhoneService) {
+angular.module('appPhone',[]).controller('PhoneListController', function PhoneListController($scope, PhoneService) {
     $scope.
 });

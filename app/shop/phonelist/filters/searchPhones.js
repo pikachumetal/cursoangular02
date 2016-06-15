@@ -1,4 +1,4 @@
-phonecatApp.filter('searchPhones', function() {
+angular.module('appPhone').filter('searchPhones', function() {
     return function(phones, __query, __queryselector) {
         var query = __query || "";
         var selector = parseInt(__queryselector) || 1;

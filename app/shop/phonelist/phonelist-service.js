@@ -1,4 +1,4 @@
-phonecatApp.service("PhoneService", function ($http, $q) {
+angular.module('appPhone').service("PhoneService", function ($http, $q) {
     var getPhones = function getPhones() {
         var deferred = $q.defer();
         $http.get('app/shop/phonelist/data/phones.json')

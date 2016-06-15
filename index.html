@@ -1,20 +1,46 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="appPhone">
 
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" />
-  <!-- inject:css -->
   <link rel="stylesheet" href="/app/common/css/styles.css">
   <link rel="stylesheet" href="/app/shop/phonelist/css/phonelist.css">
-  <!-- endinject -->
 </head>
 
 <body ng-controller="PhoneListController">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-2" ng-include="searchTemplate"></div>
+      <div class="col-md-2">
+        <!--Sidebar content-->
+        <div class="form-group">
+          <label for="query">Search:</label>
+          <input id="txtQuery" name="query" class="form-control" type="search" ng-model="query" />
+        </div>
+        <div class="form-group">
+          <label for="ddlQuery">Search by:</label>
+          <select id="ddlQuery" class="form-control" name="ddlQuery" ng-model="queryselector">
+            <option value="1">Name</option>
+            <option value="2">Description</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label for="direction"><input id="chkDirection" name="direction" type="checkbox"  class="checkbox-inline" ng-model="direccion" /> Expensive First</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="templates">Template:</label>
+          <select id="ddlTemplates" name="templates" class="form-control" ng-model="seeimage">
+            <option selected value="app/shop/phonelist/templates/phonelist.image.template.html">Images</option>
+            <option value="app/shop/phonelist/templates/phonelist.noimage.template.html">No Images</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary btn-block" ng-click="#/phones/edit/0"><span class="glyphicon glyphicon-glyphicon-plus"></span>Add</button>
+        </div>
+      </div>
       <div class="col-md-10">
         <ul class="phones list-group">
           <div ng-include="seeimage"></div>
@@ -23,15 +49,12 @@
     </div>
   </div>
   <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/angular/angular-route.js"></script>
   <script src="node_modules/angular-i18n/angular-locale_es-es.js"></script>
-  <!--<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>-->
-  <!-- inject:js -->
-  <script src="/app/app.js"></script>
-  <script src="/app/common/filters/currencyEuro.js"></script>
   <script src="/app/shop/phonelist/phonelist-core.js"></script>
   <script src="/app/shop/phonelist/phonelist-service.js"></script>
   <script src="/app/shop/phonelist/filters/searchPhones.js"></script>
-  <!-- endinject -->
+  <script src="/app/common/filters/currencyEuro.js"></script>
 </body>
 
 </html>
