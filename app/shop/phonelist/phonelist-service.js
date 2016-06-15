@@ -86,8 +86,16 @@ angular.module('appPhone').service("PhoneLocalStorage", function () {
         var storedTasks = localStorage.getItem(STORE_NAME);
         if (storedTasks) {
             var phones = JSON.parse(storedTasks) || [];
+
             phone.id = id > 0 ? id : phones.length + 1;
-            phones = phones.map(function(item) { return item.id === id ? phone : item; });
+            phone.image = "http://fpoimg.com/500x250";
+            phone.imagealt = phone.name;
+
+            if (id > 0) {
+                phones = phones.map(function (item) { return item.id === id ? phone : item; });
+            } else {
+                phones.push(phone);
+            }
             localStorage.setItem(STORE_NAME, JSON.stringify(phones));
         }
     }
@@ -96,6 +104,6 @@ angular.module('appPhone').service("PhoneLocalStorage", function () {
         getPhones: getPhones,
         setPhones: setPhones,
         getPhone: getPhone,
-        setPhone:setPhone
+        setPhone: setPhone
     }
 });
