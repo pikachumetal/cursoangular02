@@ -1,0 +1,6 @@
+  <li class="list-group-item "  ng-class-even="list-group-item-info" ng-class-odd="list-group-item-warning" class="list-group-item " ng-repeat="phone in phones | searchPhones:query:queryselector | orderBy: 'price || 0' : direccion ">
+    <h3 ng-class="{enOferta : phone.enOferta}">{{phone.name}}</h3>
+    <p>{{phone.snippet}}</p>
+    <p>Price: {{phone.price ||0 | currency}}</p>
+    <img ng-src="{{phone.image}}" alt="{{phone.imagealt}}">
+  </li>

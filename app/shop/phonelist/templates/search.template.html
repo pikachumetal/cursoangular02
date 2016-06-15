@@ -1,0 +1,25 @@
+<!--Sidebar content-->
+<p>
+  <label for="txtQuery">Search:</label>
+  <input id="txtQuery" type="search" ng-model="query" />
+</p>
+<p>
+  <label for="ddlQuery">Search by:</label>
+  <select id="ddlQuery" ng-model="queryselector">
+            <option value="1">Name</option>
+            <option value="2">Description</option>
+          </select>
+</p>
+<p>
+  <label for="chkDirection">Shut up and take my money:</label>
+  <input id="chkDirection" type="checkbox" ng-model="direccion" />
+</p>
+<p>
+  <select ng-model="seeimage">
+            <option selected value="app/shop/phonelist/templates/phonelist.template.html">Images</option>
+            <option value="app/shop/phonelist/templates/phonelist.noimage.template.html">No Images</option>
+          </select>
+</p>
+<p>
+  <button class="btn" ng-click="add()">Add</button>
+</p>
