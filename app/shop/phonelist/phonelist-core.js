@@ -24,9 +24,10 @@ angular.module('appPhone').controller('PhoneListController', function PhoneListC
         return PhoneLocalStorage.getPhones();
     }
 
-    var deletePhone = function deletePhone(id){
+    var deletePhone = function deletePhone(id) {
+        var that = this;
         id = parseInt(id || 0);
-        $scope.phones = $scope.phones.filter (function (item) {return item.id !== id; });
+        $scope.phones = $scope.phones.filter(function (item) { return item.id !== id; });
         PhoneLocalStorage.setPhones($scope.phones);
     }
 
@@ -42,7 +43,7 @@ angular.module('appPhone').controller('PhoneListController', function PhoneListC
         $scope.seeimage = "app/shop/phonelist/templates/phonelist.list.image.template.html";
         $scope.reloadJSON = reloadJSON;
         $scope.deletePhone = deletePhone;
-    }
+   }
 
     initController();
 });

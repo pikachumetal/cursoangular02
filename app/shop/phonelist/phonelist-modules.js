@@ -3,7 +3,7 @@ angular.module('appPhone',["ngRoute"]).config(function ($routeProvider) {
     
     $routeProvider
         .when("/phones/list", {
-            templateUrl: "app/shop/phonelist/templates/phonelist.list.template.html",
+            templateUrl: "app/shop/phonelist/templates/phonelist.home.template.html",
             controller: "PhoneListController"
         })
         .when("/phones/detail/:id", {
