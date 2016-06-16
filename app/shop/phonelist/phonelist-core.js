@@ -41,18 +41,19 @@ angular.module('appPhone').controller('PhoneListController', function PhoneListC
         loadSeeImage();
         //$scope.seeimageLabels = { "app/shop/phonelist/templates/phonelist.list.image.template.html": "Images", "app/shop/phonelist/templates/phonelist.list.noimage.template.html": "No Images" };
         $scope.seeimage = "app/shop/phonelist/templates/phonelist.list.image.template.html";
-        $scope.reloadJSON = reloadJSON;
+        $scope.reloadjson = reloadJSON;
         $scope.deletePhone = deletePhone;
    }
 
     initController();
 });
 
-angular.module('appPhone').controller('PhoneEditController', function PhoneListController($scope, PhoneLocalStorage, $routeParams) {
+angular.module('appPhone').controller('PhoneEditController', function PhoneListController($scope, PhoneLocalStorage, $routeParams,$location) {
     "use strict";
 
     var saveForm = function saveForm() {
         PhoneLocalStorage.setPhone(parseInt($routeParams.id), $scope.phone);
+        $location.path( "/phones/list" );
     };
 
     var resetForm = function resetForm() {
